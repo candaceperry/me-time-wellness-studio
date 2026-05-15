@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>This Is My Me Time | Sugarhill Sanctuary</title>
+  <style>
+    :root {
+      --glass: rgba(235, 232, 235, 0.78);
+      --purple: #5b168d;
+      --lavender: #b066ff;
+      --pink: #e76ab8;
+      --cream: #fff7ef;
+      --ink: #251b29;
+      --muted: #7b6685;
+      --shadow: rgba(0, 0, 0, 0.28);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(196, 157, 255, 0.48), transparent 30%),
+        radial-gradient(circle at 85% 30%, rgba(243, 100, 184, 0.42), transparent 28%),
+        radial-gradient(circle at 55% 90%, rgba(182, 127, 255, 0.38), transparent 32%),
+        linear-gradient(135deg, #101013 0%, #1b1820 38%, #2b2231 66%, #9b5e83 100%);
+      background-attachment: fixed;
+      padding: 24px 16px 44px;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(110deg, rgba(255,255,255,0.12), transparent 22%, rgba(255,255,255,0.05) 48%, transparent 70%),
+        radial-gradient(circle at 50% 10%, rgba(255,255,255,0.12), transparent 18%);
+      mix-blend-mode: screen;
+      opacity: 0.75;
+    }
+    .wrap {
+      width: min(860px, 100%);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    header {
+      text-align: center;
+      padding: 44px 12px 22px;
+    }
+    .brand-mark {
+      font-size: clamp(2.8rem, 9vw, 5.8rem);
+      color: var(--purple);
+      line-height: 0.95;
+      font-style: italic;
+      font-weight: 700;
+      text-shadow: 0 0 24px rgba(184, 91, 255, 0.22);
+      margin: 0;
+    }
+    .name-line {
+      letter-spacing: 0.8em;
+      color: #bc72ff;
+      margin: 20px 0 0;
+      font-family: Arial, sans-serif;
+      font-size: clamp(0.8rem, 2.8vw, 1.15rem);
+      font-weight: 700;
+    }
+    .card {
+      border-radius: 34px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.76), rgba(221, 216, 222, 0.76)),
+        radial-gradient(circle at top left, rgba(255,255,255,0.82), transparent 40%);
+      border: 2px solid rgba(255, 255, 255, 0.82);
+      color: var(--ink);
+      box-shadow: 0 28px 80px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.65);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      padding: clamp(22px, 5vw, 44px);
+      margin: 26px 0;
+      overflow: hidden;
+    }
+    .quote-card {
+      background: linear-gradient(145deg, rgba(255, 249, 245, 0.92), rgba(255, 243, 250, 0.88));
+      color: #202020;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 26px;
+      border-radius: 32px;
+      padding: clamp(24px, 6vw, 48px);
+      border: 3px solid rgba(255,255,255,0.9);
+      box-shadow: 0 0 32px rgba(201, 111, 255, 0.36);
+      position: relative;
+    }
+    .quote-card::before, .quote-card::after {
+      content: "✿";
+      position: absolute;
+      color: rgba(86, 118, 82, 0.45);
+      font-size: 2rem;
+    }
+    .quote-card::before { top: 18px; left: 22px; }
+    .quote-card::after { bottom: 18px; right: 22px; }
+    .quote-card p {
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      line-height: 1.7;
+      font-size: clamp(1rem, 3.8vw, 1.65rem);
+      font-weight: 700;
+      margin: 0;
+    }
+    .quote-card .signature {
+      margin-top: 26px;
+      font-family: Georgia, "Times New Roman", serif;
+      text-transform: none;
+      letter-spacing: 0.03em;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #474747;
+    }
+    .quote-below {
+      text-align: center;
+      color: #8d39da;
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 1.55;
+      font-size: clamp(0.88rem, 2.8vw, 1.05rem);
+      font-weight: 700;
+      margin: 12px auto 32px;
+      max-width: 720px;
+    }
+    h2 {
+      color: var(--purple);
+      margin: 0;
+      text-align: center;
+      font-size: clamp(2.2rem, 7vw, 4rem);
+      line-height: 1;
+    }
+    .sub {
+      text-align: center;
+      color: #a852ff;
+      font-family: Arial, sans-serif;
+      font-size: clamp(1.05rem, 4vw, 1.45rem);
+      margin: 12px 0 26px;
+      font-weight: 500;
+    }
+    .timer-circle {
+      width: min(330px, 74vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 16px solid transparent;
+      background: linear-gradient(var(--glass), var(--glass)) padding-box, linear-gradient(135deg, #e65fca, #9e5cff) border-box;
+      display: grid;
+      place-items: center;
+      margin: 26px auto;
+      color: var(--purple);
+      font-family: Arial, sans-serif;
+      font-size: clamp(3.4rem, 13vw, 6rem);
+      font-weight: 300;
+      box-shadow: 0 0 40px rgba(212, 91, 225, 0.34);
+    }
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 16px 32px;
+      min-width: 150px;
+      font-family: Arial, sans-serif;
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      font-weight: 800;
+      cursor: pointer;
+      color: #8e35d4;
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 14px 28px rgba(89, 33, 116, 0.16);
+    }
+    button.primary {
+      color: #fff;
+      background: linear-gradient(135deg, #c46df2, #ec64ad);
+    }
+    .breathing-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+      margin-top: 32px;
+    }
+    .orb {
+      width: min(180px, 30vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 25%, #f0d1ff, #b16aff 56%, #8d49df 100%);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-family: Arial, sans-serif;
+      font-size: clamp(1.4rem, 5vw, 2rem);
+      font-weight: 800;
+      box-shadow: 0 0 42px rgba(180, 100, 255, 0.54);
+      transition: transform 0.35s ease;
+      justify-self: center;
+    }
+    .orb.breathe-grow { transform: scale(1.16); }
+    .breath-words {
+      color: #a852ff;
+      font-family: Arial, sans-serif;
+      font-size: clamp(1rem, 3vw, 1.35rem);
+      line-height: 1.5;
+      text-align: left;
+    }
+    .affirmation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(14px, 3vw, 22px);
+      margin-top: 30px;
+    }
+    .affirmation-card {
+      min-height: 112px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #fff9ff, #f6e8ff);
+      display: grid;
+      place-items: center;
+      color: #9b46da;
+      font-size: 2.1rem;
+      box-shadow: 0 14px 30px rgba(89, 33, 116, 0.12);
+      border: 1px solid rgba(255,255,255,0.8);
+      cursor: pointer;
+      padding: 14px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .affirmation-card.revealed {
+      font-size: clamp(0.72rem, 2.4vw, 1rem);
+      color: var(--purple);
+      background: linear-gradient(145deg, #fff, #f4e9ff);
+    }
+    .log-box {
+      width: 100%;
+      min-height: 126px;
+      border: 0;
+      border-radius: 24px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      font-size: 1.05rem;
+      color: var(--purple);
+      background: rgba(255,255,255,0.56);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.8);
+      resize: vertical;
+      outline: none;
+    }
+    .log-box::placeholder { color: rgba(149, 112, 190, 0.72); }
+    .moments {
+      font-family: Arial, sans-serif;
+      color: #a46cf0;
+      font-style: italic;
+      text-align: center;
+      margin-top: 24px;
+      line-height: 1.6;
+      min-height: 36px;
+    }
+    .moment-item {
+      background: rgba(255,255,255,0.45);
+      border-radius: 16px;
+      padding: 12px;
+      margin-top: 10px;
+      color: var(--purple);
+      font-style: normal;
+      text-align: left;
+    }
+    footer {
+      text-align: center;
+      color: #b48cff;
+      font-family: Arial, sans-serif;
+      margin: 34px 0 10px;
+      font-size: 1rem;
+    }
+    @media (max-width: 640px) {
+      .breathing-layout { grid-template-columns: 1fr; }
+      .breath-words { text-align: center; }
+      .affirmation-grid { grid-template-columns: repeat(2, 1fr); }
+      button { width: 100%; }
+      .name-line { letter-spacing: 0.55em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1 class="brand-mark">This Is My Me<br>Time</h1>
+      <div class="name-line">CANDACE</div>
+    </header>
+
+    <section class="quote-card" aria-label="Candace Perry quote">
+      <p>You are so much more valuable than you think. Make a difference in just one person's life.</p>
+      <div class="signature">— Candace Perry<br><em>Sugarhill Sanctuary</em></div>
+    </section>
+
+    <p class="quote-below">"You are so much more valuable than you think. Make a difference in just one person's life."<br>— Candace Perry, Sugarhill Sanctuary</p>
+
+    <section class="card">
+      <h2>5-Minute Me Time</h2>
+      <p class="sub">Give yourself this pause</p>
+      <div class="timer-circle" id="timer">05:00</div>
+      <div class="button-row">
+        <button class="primary" id="startTimer">Start</button>
+        <button id="pauseTimer">Pause</button>
+        <button id="resetTimer">Reset</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Box Breathing</h2>
+      <p class="sub">4 · 4 · 4 · 4</p>
+      <div class="breathing-layout">
+        <div class="orb" id="breathOrb">Ready</div>
+        <button class="primary" id="beginBreath">Begin</button>
+        <div class="breath-words">Inhale · Hold ·<br>Exhale · Hold</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Today's Affirmations</h2>
+      <p class="sub">Tap a card to reveal your truth</p>
+      <div class="affirmation-grid" id="affirmationGrid"></div>
+    </section>
+
+    <section class="card">
+      <h2>Me Time Log</h2>
+      <p class="sub">A little note to your future self</p>
+      <textarea class="log-box" id="momentText" placeholder="How did you care for yourself today? A walk, a tea, a deep breath..."></textarea>
+      <div class="button-row">
+        <button class="primary" id="addMoment">Add Today's Moment ✨</button>
+      </div>
+      <div class="moments" id="moments">Your moments will appear here. Start with today ✨</div>
+    </section>
+
+    <footer>Created with love for Candace • Sugarhill Sanctuary</footer>
+  </div>
+
+  <script>
+    const affirmations = [
+      "I am allowed to slow down.",
+      "My quiet moments matter.",
+      "I can begin again gently.",
+      "Rest is part of my growth.",
+      "I choose peace with intention.",
+      "My presence is enough.",
+      "I can care for myself today.",
+      "Small steps still count.",
+      "I am becoming more grounded.",
+      "My breath can bring me back.",
+      "I deserve calm spaces.",
+      "I honor this moment."
+    ];
+
+    const grid = document.getElementById("affirmationGrid");
+    affirmations.forEach((text) => {
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "affirmation-card";
+      card.textContent = "💜";
+      card.addEventListener("click", () => {
+        card.textContent = text;
+        card.classList.add("revealed");
+      });
+      grid.appendChild(card);
+    });
+
+    let timerSeconds = 300;
+    let timerInterval = null;
+    const timerDisplay = document.getElementById("timer");
+
+    function updateTimer() {
+      const min = Math.floor(timerSeconds / 60);
+      const sec = timerSeconds % 60;
+      timerDisplay.textContent = String(min).padStart(2, "0") + ":" + String(sec).padStart(2, "0");
+    }
+
+    document.getElementById("startTimer").addEventListener("click", () => {
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (timerSeconds > 0) {
+          timerSeconds -= 1;
+          updateTimer();
+        } else {
+          clearInterval(timerInterval);
+          timerDisplay.textContent = "Done";
+        }
+      }, 1000);
+    });
+
+    document.getElementById("pauseTimer").addEventListener("click", () => {
+      clearInterval(timerInterval);
+    });
+
+    document.getElementById("resetTimer").addEventListener("click", () => {
+      clearInterval(timerInterval);
+      timerSeconds = 300;
+      updateTimer();
+    });
+
+    const breathOrb = document.getElementById("breathOrb");
+    const breathSteps = ["Inhale", "Hold", "Exhale", "Hold"];
+    let breathIndex = 0;
+    let breathInterval = null;
+
+    document.getElementById("beginBreath").addEventListener("click", () => {
+      clearInterval(breathInterval);
+      breathIndex = 0;
+      breathOrb.textContent = breathSteps[breathIndex];
+      breathOrb.classList.add("breathe-grow");
+      breathInterval = setInterval(() => {
+        breathIndex = (breathIndex + 1) % breathSteps.length;
+        breathOrb.textContent = breathSteps[breathIndex];
+        breathOrb.classList.toggle("breathe-grow", breathSteps[breathIndex] === "Inhale" || breathSteps[breathIndex] === "Hold");
+      }, 4000);
+    });
+
+    const momentText = document.getElementById("momentText");
+    const moments = document.getElementById("moments");
+
+    document.getElementById("addMoment").addEventListener("click", () => {
+      const value = momentText.value.trim();
+      if (!value) {
+        moments.textContent = "Write one small moment first ✨";
+        return;
+      }
+      if (!moments.dataset.started) {
+        moments.innerHTML = "";
+        moments.dataset.started = "true";
+      }
+      const item = document.createElement("div");
+      item.className = "moment-item";
+      item.textContent = value;
+      moments.prepend(item);
+      momentText.value = "";
+    });
+  </script>
+</body>
+</html>
